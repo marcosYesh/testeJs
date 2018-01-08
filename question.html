@@ -1,0 +1,60 @@
+<script id="telefonesTLP" type="text/x-jquery-tmpl">
+<div id='test'>
+      <form id='frmTest' action='#'>
+          {{each questions}}
+              {{$value.Type}}
+                {{case QUESTION_TYPE_CHOICE }}
+                      {{each $value.Answers}}
+                          {{if $value.CorrectAnswer == true}}
+                              <div class='correctAnswer' >
+                          {{else}}
+                              <div class='answer' >
+                          {{/if}}
+                          <input class='radio' type='radio' name='question_${$value.Id}_choices' id='question_${$value.Id}_${$index}'/><div class='resp'>${$value}</div></div><br>
+                      {{/each}}
+                {{/case}}
+                {{case QUESTION_TYPE_TF}}
+                      {{if $value.CorrectAnswer == true}}
+                          <div class='correctAnswer' >
+                      {{else}}
+                          <div class='answer' >
+                      {{/if}}
+                      <input class='radio' type='radio' name='question_${$value.Id}_choices' id='question_${$value.Id}_True'/><div class='resp'>Verdadeiro</div> </div><br>
+                      {{if $value.CorrectAnswer == false}}
+                          <div class='correctAnswer' >
+                      {{else}}
+                          <div class='answer' >
+                      {{/if}}
+                      <input class='radio' type='radio' name='question_${$value.Id}_choices' id='question_${$value.Id}_False'/><div class='resp'>Falso</div> </div><br>
+                {{/case}}
+                {{case QUESTION_TYPE_NUMERIC}}
+                      <div class='correctAnswer'>
+                        <input type='text' value='' id='question_${$value.Id}_Text' onchange='CheckNumeric(this)'/> (${$value.CorrectAnswer})
+                      </div>
+                {{/case}}
+                {{otherwise}}
+                      alert("Questão invalida detectada");
+                {{/otherwise}}
+                {{/switch}}
+                <br><br><input class="btn btn-warning responderi" type="button" value="responder" onclick="document.getElementById('+xyz+').style.display=\'none\'" /></div>
+          {{/each}}
+      </form>
+</div>
+</script>
+
+/*function teste(){
+  //document.getElementById("teste").style.display="none";
+  //$("#teste").hide();
+  $("#question_com.scorm.golfsamples.interactions.playing_12").hide();
+  $("#question_com.scorm.golfsamples.interactions.playing_11").hide();
+  $("#question_com.scorm.golfsamples.interactions.playing_10").hide();
+  $("#question_com.scorm.golfsamples.interactions.playing_9").hide();
+  $("#question_com.scorm.golfsamples.interactions.playing_8").hide();
+  $("#question_com.scorm.golfsamples.interactions.playing_7").hide();
+  $("#question_com.scorm.golfsamples.interactions.playing_6").hide();
+  $("#question_com.scorm.golfsamples.interactions.playing_5").hide();
+  $("#question_com.scorm.golfsamples.interactions.playing_4").hide();
+  $("#question_com.scorm.golfsamples.interactions.playing_3").hide();
+  $("#question_com.scorm.golfsamples.interactions.playing_2").hide();
+  $("#question_com.scorm.golfsamples.interactions.playing_1").hide();
+}*/
